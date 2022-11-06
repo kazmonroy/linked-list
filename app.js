@@ -33,6 +33,26 @@ class LinkedList {
     }
   }
 
+  printListSize() {
+    if (!this.head) return null;
+    return this.size;
+  }
+
+  printHead() {
+    if (!this.head) return null;
+    return this.head;
+  }
+
+  printTail() {
+    let current = this.head;
+    if (!this.head) return null;
+    while (current.next !== null) {
+      current = current.next;
+    }
+
+    return current.data;
+  }
+
   prependAt(data, index) {
     let node = new Node(data);
     let currentNode = this.head;
@@ -57,19 +77,49 @@ class LinkedList {
     }
   }
 
-  getNodeDataAt(index) {
+  getAt(index) {
     let current = this.head;
     let count = 0;
     while (current) {
       if (index === count) {
-        console.log(current.data);
+        return current.data;
       }
       current = current.next;
       count++;
     }
   }
 
-  removeNodeAt(index) {
+  contains(value) {
+    let currentNode = this.head;
+
+    if (!this.head) return null;
+    while (currentNode.next !== null) {
+      if (currentNode.data === value) {
+        return true;
+      }
+
+      currentNode = currentNode.next;
+    }
+
+    return currentNode.data === value ? true : false;
+  }
+
+  find(value) {
+    let currentNode = this.head;
+    let index = 0;
+
+    if (!this.head) return null;
+
+    while (currentNode.next !== null) {
+      if (currentNode.data === value) return index;
+      currentNode = currentNode.next;
+      index++;
+    }
+
+    return currentNode.data === value ? index : null;
+  }
+
+  removeAt(index) {
     let currentNode = this.head;
     let count = 0;
     let previousNode;
@@ -94,7 +144,7 @@ class LinkedList {
   clearList() {
     this.head = null;
     this.size = 0;
-    console.log('list is cleared');
+    return `list is cleared`;
   }
 
   printNodeListData() {
@@ -112,7 +162,5 @@ const ll = new LinkedList();
 
 ll.prepend(300);
 ll.prepend(200);
+ll.prepend(100);
 ll.append(400);
-
-ll.printNodeListData();
-ll.size();
