@@ -1,6 +1,6 @@
 # LinkedList 🔗
 
-This project is part of the Computer Science module under the JavaScript Full Stack Development path.
+This project is part of the Computer Science module of [The Odin Project](https://www.theodinproject.com/lessons/javascript-linked-lists) under the JavaScript Full Stack Development path.
 
 LinkedList methods:
 
