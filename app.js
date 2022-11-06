@@ -28,8 +28,8 @@ class LinkedList {
         currentNode = currentNode.next;
       }
 
-      currentNode.next = node;
       this.size++;
+      return (currentNode.next = node);
     }
   }
 
@@ -50,31 +50,7 @@ class LinkedList {
       current = current.next;
     }
 
-    return current.data;
-  }
-
-  prependAt(data, index) {
-    let node = new Node(data);
-    let currentNode = this.head;
-    let previousNode;
-    let count = 0;
-
-    if (index > 0 && index > this.size) {
-      return;
-    } else if (index === 0) {
-      this.prepend(data);
-      return;
-    } else {
-      while (count < index) {
-        previousNode = currentNode;
-        currentNode = currentNode.next;
-        count++;
-      }
-
-      previousNode.next = node;
-      node.next = currentNode;
-      this.size++;
-    }
+    return current;
   }
 
   getAt(index) {
@@ -119,6 +95,30 @@ class LinkedList {
     return currentNode.data === value ? index : null;
   }
 
+  insertAt(data, index) {
+    let node = new Node(data);
+    let currentNode = this.head;
+    let previousNode;
+    let count = 0;
+
+    if (index > 0 && index > this.size) {
+      return;
+    } else if (index === 0) {
+      this.prepend(data);
+      return;
+    } else {
+      while (count < index) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+        count++;
+      }
+
+      previousNode.next = node;
+      node.next = currentNode;
+      this.size++;
+    }
+  }
+
   removeAt(index) {
     let currentNode = this.head;
     let count = 0;
@@ -147,8 +147,12 @@ class LinkedList {
     return `list is cleared`;
   }
 
-  printNodeListData() {
+  printList() {
     let currentNode = this.head;
+    // while (currentNode) {
+    //   console.log(currentNode.data);
+    //   currentNode = currentNode.next;
+    // }
     while (currentNode) {
       console.log(currentNode.data);
       currentNode = currentNode.next;
@@ -164,3 +168,5 @@ ll.prepend(300);
 ll.prepend(200);
 ll.prepend(100);
 ll.append(400);
+
+ll.printList();
